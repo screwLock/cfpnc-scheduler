@@ -31,9 +31,9 @@ class Cfpnc_Scheduler_Activator {
 	 */
 	public static function activate() {
 		require_once plugin_dir_path( __FILE__ ) . 'sql/cfpnc_scheduler_tables_install.php';
-		//require_once plugin_dir_path( __FILE__ ) . 'sql/cfpnc_scheduler_data_install.php';
+		require_once plugin_dir_path( __FILE__ ) . 'sql/cfpnc_scheduler_data_install.php';
 		cfpnc_scheduler_tables_install();
-		//sapo_install_all_data();
+		cfpnc_scheduler_install_all_data();
 	}
 
 }

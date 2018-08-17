@@ -28,7 +28,7 @@ function cfpnc_scheduler_tables_install() {
 			  max_pickups TINYINT(255) UNSIGNED NOT NULL DEFAULT 5,
 			  created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
 			  UNIQUE (id),
-			  PRIMARY KEY  (user_id, zipcode)    
+			  PRIMARY KEY  (id)    
 		   ) $charset_collate;";
 		}	
 				
