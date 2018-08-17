@@ -147,7 +147,7 @@
             </div>
     </div>
     <div class="form-group" id="furniture-comments">
-        <label for="comment">Comment:</label>
+        <label for="comment">Describe the furniture items below:</label>
         <textarea class="form-control" rows="5" id="comment"></textarea>
     </div>
 </div><!-- End of items card-->
