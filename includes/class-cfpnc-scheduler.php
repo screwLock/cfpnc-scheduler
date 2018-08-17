@@ -172,7 +172,10 @@ class Cfpnc_Scheduler {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'register_scripts' );
 
+		//shortcodes
+		$this->loader->add_shortcode( 'donor_registration', $plugin_public, 'donor_registration_shortcode',  10, 2);
 	}
 
 	/**

@@ -99,5 +99,24 @@ class Cfpnc_Scheduler_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cfpnc-scheduler-public.js', array( 'jquery' ), $this->version, false );
 
 	}
+	/**
+	 * --------------------------------------------------------------------------------------------------------------------------------------------
+	 * --------------------------------------------------------------------------------------------------------------------------------------------
+	 * SHORTCODE CALLBACKS FOR PUBLIC FACING FUNCTIONALITY SHOULD BE INCLUDED BELOW
+	 * AT THE END OF THE PLUGIN PUBLIC CLASS DEFINITION
+	 * 
+	 * --------------------------------------------------------------------------------------------------------------------------------------------
+	 */
 
+	public function donor_registration_shortcode(){
+		/*
+		wp_enqueue_style('sapo_bootstrap_css');
+		wp_enqueue_script('sapo_bootstrap_js');
+		wp_enqueue_script( 'overview' );
+		wp_enqueue_script( 'google_maps');
+		add_filter('script_loader_tag', array($this, 'google_maps_script_attributes'), 10, 2);
+		*/
+		//include_once('partials/donor_registration.php');
+		return '';
+	}
 }
