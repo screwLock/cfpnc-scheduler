@@ -171,14 +171,21 @@ class Cfpnc_Scheduler {
 	 */
 	private function define_public_hooks() {
 
+		$donor_registration_ajax = new DonorRegistrationAjax();
+
 		$plugin_public = new Cfpnc_Scheduler_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'register_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'register_scripts' );
 
 		//shortcodes
-		$this->loader->add_shortcode( 'donor_registration', $plugin_public, 'donor_registration_shortcode',  10, 2);
+		$this->loader->add_shortcode( 'cfpnc_donor_registration', $plugin_public, 'donor_registration_shortcode',  10, 2);
+
+		//Ajax
+		$this->loader->add_action('wp_ajax_get_zipcodes', $donor_registration_ajax, 'get_zipcodes');
+		$this->loader->add_action('wp_ajax_send_emails', $donor_registration_ajax, 'send_emails');
+
 	}
 
 	/**

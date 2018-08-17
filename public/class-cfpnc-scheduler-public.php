@@ -74,6 +74,7 @@ class Cfpnc_Scheduler_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cfpnc-scheduler-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name . 'bootstrap-datepicker-css', plugin_dir_url( __FILE__ ) . 'css/bootstrap-datepicker3.standalone.css', array(), $this->version, false );
 
 	}
 
@@ -97,6 +98,22 @@ class Cfpnc_Scheduler_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cfpnc-scheduler-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . 'bootstrap-datepicker-js', plugin_dir_url( __FILE__ ) . 'js/bootstrap-datepicker.js', array('jquery'), $this->version, false );
+	}
+
+	/**
+	 * This function is for registering scripts that are not going to be used sitewide
+	 * but for shortcodes instead.  This function is to be called in define_public_hooks()
+	 * of the class-sapoadmin class.
+	 * 
+	 * 
+	 */
+	public function register_scripts() {
+		wp_register_script('donor_registration', plugin_dir_url( __FILE__ ) . 'js/donor_registration.js', array(), $this->version, true );
+		wp_register_script('google_autocomplete', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDOs_VPiyP8PWQ70b7uNtPhKftBgwsFhw8&libraries=places&callback=initAutocomplete',
+		array('donor_registration'), $this->version);
+		wp_register_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js", array('jquery'));
+		wp_register_style('bootstrap_css', "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
 
 	}
 	/**
@@ -109,14 +126,14 @@ class Cfpnc_Scheduler_Public {
 	 */
 
 	public function donor_registration_shortcode(){
-		/*
-		wp_enqueue_style('sapo_bootstrap_css');
-		wp_enqueue_script('sapo_bootstrap_js');
-		wp_enqueue_script( 'overview' );
-		wp_enqueue_script( 'google_maps');
-		add_filter('script_loader_tag', array($this, 'google_maps_script_attributes'), 10, 2);
-		*/
-		//include_once('partials/donor_registration.php');
+		
+
+		wp_localize_script( 'donor_registration', 'donor_registration_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' )));
+		wp_enqueue_style('bootstrap_css');
+		wp_enqueue_script('bootstrap_js');
+		wp_enqueue_script( 'donor_registration' );
+		wp_enqueue_script('google_autocomplete');
+		include_once('partials/donor_registration.php');
 		return '';
 	}
 }
