@@ -13,3 +13,11 @@
  */
 ?>
 
+<div class="card">
+    <div class="card-body">
+    <h5 class="card-title">Select The Pickup Zipcode</h5>
+        <select class="custom-select class col-2" id="zipcode-select">
+            <option selected>Select a Zipcode</option>
+        </select>
+    </div>
+</div><!-- End of zipcode card-->

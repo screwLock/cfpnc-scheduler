@@ -122,6 +122,9 @@ class Cfpnc_Scheduler {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cfpnc-scheduler-public.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-donor-registration-ajax.php';
+
+
 		$this->loader = new Cfpnc_Scheduler_Loader();
 
 	}
