@@ -35,15 +35,21 @@ function cfpnc_scheduler_tables_install() {
 		//1. Create the donations table
 		$donations_table = $wpdb->prefix . "cfpnc_scheduler_donations";
 	 
-		if($wpdb->get_var("SHOW TABLES LIKE '" . $zipcodes_table . "'") !== $zipcodes_table) {
-		   $sql[] = "CREATE TABLE $zipcodes_table (
+		if($wpdb->get_var("SHOW TABLES LIKE '" . $donations_table . "'") !== $donations_table) {
+		   $sql[] = "CREATE TABLE $donations_table (
 			  id BIGINT(20) NOT NULL AUTO_INCREMENT,
 			  user_id BIGINT(20) NOT NULL,
 			  contact VARCHAR(30) NOT NULL,
 			  phone_number VARCHAR(10) NOT NULL,
 			  email VARCHAR(30) NOT NULL,
-			  address VARCHAR(100) NOT NULL,
-			  
+			  pickup_address VARCHAR(100) NOT NULL,
+			  pickup_date DATE NOT NULL,
+			  stairs TINYINT(1) NOT NULL DEFAULT 0,
+			  movingOut TINYINT(1) NOT NULL DEFAULT 0,
+			  yardSale TINYINT(1) NOT NULL DEFAULT 0,
+			  estateAuction TINYINT(1) NOT NULL DEFAULT 0,
+			  items VARCHAR(100) NOT NULL DEFAULT '',
+			  size VARCHAR(15) NOT NULL DEFAULT '',
 			  created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
 			  UNIQUE (id),
 			  PRIMARY KEY  (id)    
