@@ -184,7 +184,7 @@ class Cfpnc_Scheduler {
 
 		//Ajax
 		$this->loader->add_action('wp_ajax_get_zipcodes', $donor_registration_ajax, 'get_zipcodes');
-		$this->loader->add_action('wp_ajax_send_emails', $donor_registration_ajax, 'send_emails');
+		$this->loader->add_action('wp_ajax_save_donation', $donor_registration_ajax, 'save_donation');
 
 	}
 

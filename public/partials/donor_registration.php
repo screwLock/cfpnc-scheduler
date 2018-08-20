@@ -198,7 +198,7 @@
         </div>
         <div class="form-group col-3">
             <label for="Number">Phone Number:</label>
-            <input type="text" class="form-control" id="number" required>
+            <input type="text" class="form-control" id="phone-number" required>
         </div>
     </div>
 </div><!--End of contact card-->
@@ -214,6 +214,9 @@
             <option>Alley</option>
             <option>2nd or 3rd Floor</option>
         </select>
+
+        <input type="checkbox" name="someInfo" value="1" style="display:none !important" tabindex="-1" autocomplete="off">
+
     </div>
 </div><!--End of contact card-->
 <div class="card" id="submit-donor-card">

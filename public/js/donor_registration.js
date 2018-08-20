@@ -35,6 +35,18 @@ jQuery(window).load(function () {
         });
     jQuery('#pickup-datepicker').datepicker('setDate', 'today');
 
+    jQuery('#submit-donor-button').popover({
+        title: "Error",
+        content: "All fields required",
+        trigger: "manual",
+      });
+
+      jQuery('#email').popover({
+        title: "Error",
+        content: "Enter a valid email",
+        trigger: "manual",
+      })
+
     jQuery("#zipcode-select").on("change", function (e) {
         jQuery("#pickup-datepicker-card").show('slow');
         jQuery('#pickup-datepicker').datepicker('setDaysOfWeekDisabled', getDisabledWeekdays(zipcodes[jQuery("select option:selected").val()].days));
@@ -53,6 +65,45 @@ jQuery(window).load(function () {
             jQuery('#furniture-comments').hide('slow');
         }
     });
+    jQuery("#submit-donor-button").click(function(e){
+        e.preventDefault();
+        if(areFieldsEmpty()){
+            jQuery('#submit-donor-button').popover('show');
+            setTimeout(function () {
+                jQuery('#submit-donor-button').popover('hide');
+            }, 2000);
+            return false;
+          }
+          var contact = jQuery('#contact-name').val();
+          var phoneNumber = jQuery('#phone-number').val();
+          var email = jQuery('#email').val();
+          var stairs= parseInt(jQuery('input[type=radio][name=stairs-radio]:checked').val());
+          var movingOut = parseInt(jQuery('input[type=radio][name=move-radio]:checked').val());
+          var yardSale = parseInt(jQuery('input[type=radio][name=yard-radio]:checked').val());
+          var estateAuction = parseInt(jQuery('input[type=radio][name=estate-radio]:checked').val());
+          if(!validEmail(email)){
+            jQuery('#email').popover('show');
+            setTimeout(function () {
+                jQuery('#email').popover('hide');
+            }, 2000);
+            return false;
+          }
+          var newDonation = '';
+          jQuery.ajax({
+            type:"POST",
+            url: donor_registration_ajax.ajax_url,
+            dataType: 'json',
+            data: {
+                action: 'save_donation',
+                new_donation: newDonation
+            },
+            success: function (response) {
+                console.log(response);
+              },
+            error: function(error){
+            }
+          });        
+    });//End of donor submit button ajax
 });
 
 function createNewZipcode(zip, days, maxTimeEnabled = 0, maxTime = "8:00am", maxPickups = 5) {
@@ -70,6 +121,15 @@ function renderZipcodeOption(zipcode) {
     return "<option value=" + zipcode.zipcode + "> " + zipcode.zipcode + "</option>";
 }
 
+function createDonation(name,phoneNumber,email){
+    var donor = {
+      name: name,
+      phoneNumber: phoneNumber,
+      email: email
+    };
+    return donor;
+}
+
 /**
  * Convert days of week to int values for datepicker
  * @param {*} days 
@@ -83,6 +143,16 @@ function getDisabledWeekdays(days) {
     return intDays;
 }
 
+function areFieldsEmpty(){
+    var fields = jQuery('input:text').filter(function() { return jQuery(this).val() == ""; });
+    if(fields.length > 1) return true;
+    else return false;
+  }
+  
+function validEmail(email){
+    var reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return reEmail.test(email);
+  }
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 

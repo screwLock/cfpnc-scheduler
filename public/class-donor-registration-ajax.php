@@ -64,6 +64,13 @@
         wp_send_json_success($zipcodes);
     }
 
+    public function save_donation(){
+        global $wpdb;
+        $donations_table = $wpdb->prefix . "cfpnc_scheduler_pickups";
+        wp_send_json_success("success");
+
+    }
+
     //send emails to both cfpnc and donor
     //call this after saving pickup to database
     public function send_emails(){
