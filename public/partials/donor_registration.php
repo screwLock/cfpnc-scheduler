@@ -146,9 +146,28 @@
                 <label class="form-check-label" for="desk">Desk</label>           
             </div>
     </div>
-    <div class="form-group" id="furniture-comments">
+    <div class="form-group col-4" id="furniture-comments">
         <label for="comment">Describe the furniture items below:</label>
         <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">What is the approximate size of your donation(if not donating furniture or appliances)?</h5>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sizes" value="smaller" id="smaller">
+            <label class="form-check-label" for="smaller">Smaller (1 - 3 Bags/Boxes)</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sizes" value="larger" id="larger">
+            <label class="form-check-label" for="larger">Larger (4 - 15 Bags/Boxes)</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sizes" value="special" id="special">
+            <label class="form-check-label" for="special">Special (15+ Bags/Boxes)</label>     
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sizes" value="none" id="none">
+            <label class="form-check-label" for="none">None/Not Applicable</label>           
+        </div>
     </div>
 </div><!-- End of items card-->
 
@@ -197,3 +216,18 @@
         </select>
     </div>
 </div><!--End of contact card-->
+<div class="card" id="submit-donor-card">
+    <div class="card-body">
+        <p>
+        In order to provide you with outstanding service, It is our policy to call 10-15 min
+        prior to arrival to confirm the pick up. If you need more time, please be sure to specify
+        in special comments area below. Also, please add any other special requests below.
+        </p> 
+    <div class="form-group col-4" id="submit-comment">
+        <label for="submit-comment">Special Instructions or comments</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+        <button type="button" class="btn btn-primary" id="submit-donor-button">Submit</button>
+    </div>
+</div><!--End of submit card-->
+

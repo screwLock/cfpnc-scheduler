@@ -64,7 +64,10 @@
         wp_send_json_success($zipcodes);
     }
 
+    //send emails to both cfpnc and donor
+    //call this after saving pickup to database
     public function send_emails(){
+        wp_mail('myemail@myemail.com', 'The subject', 'The message');
         wp_mail('myemail@myemail.com', 'The subject', 'The message');
     }
 
