@@ -85,16 +85,16 @@
         );
 
         $status = $wpdb->insert($donations_table, $donation_data, array('%s','%s','%s','%s','%s','%s', '%s', '%d', '%d', '%d', '%d'));
-
+        //send_emails();
         wp_send_json_success("success");
 
     }
 
     //send emails to both cfpnc and donor
     //call this after saving pickup to database
-    public function send_emails(){
-        wp_mail('myemail@myemail.com', 'The subject', 'The message');
-        wp_mail('myemail@myemail.com', 'The subject', 'The message');
+    private function send_emails(){
+        wp_mail('helmlyw@gmail.com', 'The subject', 'The message');
+        wp_mail('helmlyw@gmail.com', 'The subject', 'The message');
     }
 
  }
