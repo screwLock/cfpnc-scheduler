@@ -107,7 +107,8 @@ jQuery(window).load(function () {
                 jQuery('#submit-donor-card').popover('hide');
             }, 2000);
             return false;
-          }          if(!validEmail(email)){
+          }          
+          if(!validEmail(email)){
             jQuery('#email').popover('show');
             setTimeout(function () {
                 jQuery('#email').popover('hide');
@@ -135,6 +136,7 @@ jQuery(window).load(function () {
                 jQuery("#donation-success").show('slow');      
             },
             error: function(error){
+                console.log(error);
             }
           });        
     });//End of donor submit button ajax
@@ -156,7 +158,7 @@ function renderZipcodeOption(zipcode) {
 }
 
 function createNewDonation(name,phoneNumber,email,address,stairs,movingOut,yardSale,estateAuction, items, size, date){
-    var donor = {
+    var donation = {
       name: name,
       phoneNumber: phoneNumber,
       email: email,

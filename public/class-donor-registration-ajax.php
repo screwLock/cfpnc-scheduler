@@ -66,7 +66,26 @@
 
     public function save_donation(){
         global $wpdb;
-        $donations_table = $wpdb->prefix . "cfpnc_scheduler_pickups";
+        $donations_table = $wpdb->prefix . "cfpnc_scheduler_donations";
+
+        $new_donation = $_POST['new_donation'];
+
+        $donation_data = array(
+            'email' => $new_donation['email'],
+            'contact' => $new_donation['name'],
+            'phone_number' => $new_donation['phoneNumber'],
+            'pickup_address' => $new_donation['address'],
+            'pickup_date' => date('Y-m-d', strtotime($new_donation['date'])),
+            'items' => $new_donation['items'],
+            'size' => $new_donation['size'],
+            'stairs' => $new_donation['stairs'],
+            'moving_out' => $new_donation['movingOut'],
+            'yard_sale' => $new_donation['yardSale'],
+            'estate_auction' => $new_donation['estateAuction']
+        );
+
+        $status = $wpdb->insert($donations_table, $donation_data, array('%s','%s','%s','%s','%s','%s', '%s', '%d', '%d', '%d', '%d'));
+
         wp_send_json_success("success");
 
     }
