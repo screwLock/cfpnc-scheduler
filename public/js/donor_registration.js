@@ -48,11 +48,21 @@ jQuery(window).load(function () {
         title: "Error",
         content: "Enter a valid email",
         trigger: "manual",
-      })
+      });
+      jQuery('#phone-number').popover({
+        title: "Error",
+        content: "Enter a valid phone number",
+        trigger: "manual",
+      });
+      jQuery('#submit-donor-card').popover({
+        title: "Error",
+        content: "Select at least one item from above",
+        trigger: "manual",
+      });
 
     jQuery("#zipcode-select").on("change", function (e) {
         jQuery("#pickup-datepicker-card").show('slow');
-        jQuery('#pickup-datepicker').datepicker('setDaysOfWeekDisabled', getDisabledWeekdays(zipcodes[jQuery("select option:selected").val()].days));
+        jQuery('#pickup-datepicker').datepicker('setDaysOfWeekDisabled', getDisabledWeekdays(zipcodes[jQuery("#zipcode-select option:selected").val()].days));
         //jQuery('#pickup-datepicker').datepicker('setDatesDisabled', blackoutDates);
     });
     jQuery("#pickup-datepicker").datepicker().on('changeDate', function () {
@@ -88,14 +98,30 @@ jQuery(window).load(function () {
           var movingOut = parseInt(jQuery('input[type=radio][name=move-radio]:checked').val());
           var yardSale = parseInt(jQuery('input[type=radio][name=yard-radio]:checked').val());
           var estateAuction = parseInt(jQuery('input[type=radio][name=estate-radio]:checked').val());
-          if(!validEmail(email)){
+          var items = getCheckedItems();
+          var size = getCheckedSize();
+          var date = jQuery('#pickup-datepicker').datepicker('getDate').toISOString().slice(0, 10);
+          if(items === undefined || items.length == 0){
+            jQuery('#submit-donor-card').popover('show');
+            setTimeout(function () {
+                jQuery('#submit-donor-card').popover('hide');
+            }, 2000);
+            return false;
+          }          if(!validEmail(email)){
             jQuery('#email').popover('show');
             setTimeout(function () {
                 jQuery('#email').popover('hide');
             }, 2000);
             return false;
           }
-          var newDonation = '';
+          if(!validPhoneNumber(phoneNumber)){
+            jQuery('#phone-number').popover('show');
+            setTimeout(function () {
+                jQuery('#phone-number').popover('hide');
+            }, 2000);
+            return false;
+          }
+          var newDonation = createNewDonation(contact, phoneNumber, email, address, stairs, movingOut, yardSale, estateAuction, items, size, date);
           jQuery.ajax({
             type:"POST",
             url: donor_registration_ajax.ajax_url,
@@ -129,7 +155,7 @@ function renderZipcodeOption(zipcode) {
     return "<option value=" + zipcode.zipcode + "> " + zipcode.zipcode + "</option>";
 }
 
-function createDonation(name,phoneNumber,email,address,stairs,movingOut,yardSale,estateAuction){
+function createNewDonation(name,phoneNumber,email,address,stairs,movingOut,yardSale,estateAuction, items, size, date){
     var donor = {
       name: name,
       phoneNumber: phoneNumber,
@@ -139,6 +165,9 @@ function createDonation(name,phoneNumber,email,address,stairs,movingOut,yardSale
       movingOut: movingOut,
       yardSale: yardSale,
       estateAuction: estateAuction,
+      items: items,
+      size: size,
+      date: date
     };
     return donation;
 }
@@ -166,6 +195,22 @@ function validEmail(email){
     var reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return reEmail.test(email);
   }
+
+function validPhoneNumber(phoneNumber){
+    var rePhoneNumber = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    return rePhoneNumber.test(phoneNumber);
+}
+
+function getCheckedItems(){
+    var checkedVals = jQuery('input[name="items"]:checked').map(function() {
+        return this.value;
+    }).get();
+    return checkedVals;
+}
+
+function getCheckedSize(){
+    return jQuery('input[name="sizes"]:checked').val();
+}
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 

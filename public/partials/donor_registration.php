@@ -83,67 +83,67 @@
     <div class="card-body">
         <h5 class="card-title">Select the items you will be donating.  Select all that apply.</h5>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="largeFurniture">
+                <input class="form-check-input" name="items" type="checkbox" value="Large Furniture" id="largeFurniture">
                 <label class="form-check-label" for="largeFurniture">Large Furniture</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="accentTables">
-                <label class="form-check-label" for="accentTables">Living Room - Chairs</label>
+                <input class="form-check-input" name="items" type="checkbox" value="Accent Tables" id="accentTables">
+                <label class="form-check-label" for="accentTables">Living Room - Accent Tables</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="chairs">
+                <input class="form-check-input" name="items" type="checkbox" value="Living Room - Chairs" id="chairs">
                 <label class="form-check-label" for="chairs">Living Room - Chairs</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="sofa">
+                <input class="form-check-input" name="items" type="checkbox" value="Living Room - Sofa" id="sofa">
                 <label class="form-check-label" for="sofa">Living Room - Sofa</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="sectional">
+                <input class="form-check-input" name="items" type="checkbox" value="Living Room - Sectional Seat" id="sectional">
                 <label class="form-check-label" for="sectional">Living Room - Sectional Seat</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="sofa-love-seat">
+                <input class="form-check-input" name="items" type="checkbox" value="Living Room - Sofa and Love Seat" id="sofa-love-seat">
                 <label class="form-check-label" for="sofa-love-seat">Living Room - Sofa and Love Seat</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="beds">
-                <label class="form-check-label" for="beds">Bedroom-Bed</label>
+                <input class="form-check-input" name="items" type="checkbox" value="Bedroom - Bed" id="beds">
+                <label class="form-check-label" for="beds">Bedroom - Bed</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="dressers">
+                <input class="form-check-input" name="items" type="checkbox" value="Bedroom - Dressers" id="dressers">
                 <label class="form-check-label" for="dressers">Bedroom - Dressers</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="Misc">
+                <input class="form-check-input" name="items" type="checkbox" value="Misc" id="Misc">
                 <label class="form-check-label" for="Misc">Misc - knick knacks, Christmas</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="clothing">
+                <input class="form-check-input" name="items" type="checkbox" value="Clothing" id="clothing">
                 <label class="form-check-label" for="clothing">Clothing</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="kitchen-small">
+                <input class="form-check-input" name="items" type="checkbox" value="Kitchen - Small appliances, dishes, cookware" id="kitchen-small">
                 <label class="form-check-label" for="kitchen-small">Kitchen - Small appliances, dishes, cookware</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="kitchen-big">
-                <label class="form-check-label" for="kitchen-big">Kitchen - Refrigerate, Stoves, etc.</label>
+                <input class="form-check-input" name="items" type="checkbox" value="Kitechen - Refrigerator, Stoves, etc." id="kitchen-big">
+                <label class="form-check-label" for="kitchen-big">Kitchen - Refrigerator, Stoves, etc.</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="diningRoom">
+                <input class="form-check-input" name="items" type="checkbox" value="Dining Room - tables, chairs" id="diningRoom">
                 <label class="form-check-label" for="diningRoom">Dining Room - tables, chairs</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="office">
+                <input class="form-check-input" name="items" type="checkbox" value="Office - Computer" id="office">
                 <label class="form-check-label" for="office">Office - Computer</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="washer">
+                <input class="form-check-input" name="items" type="checkbox" value="Washer/Dryer" id="washer">
                 <label class="form-check-label" for="washer">Washer/Dryer</label>     
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="desk">
+                <input class="form-check-input" name="items" type="checkbox" value="Desk" id="desk">
                 <label class="form-check-label" for="desk">Desk</label>           
             </div>
     </div>
@@ -166,7 +166,7 @@
             <label class="form-check-label" for="special">Special (15+ Bags/Boxes)</label>     
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="sizes" value="none" id="none">
+            <input class="form-check-input" type="radio" name="sizes" value="none" id="none" checked>
             <label class="form-check-label" for="none">None/Not Applicable</label>           
         </div>
     </div>
@@ -208,7 +208,8 @@
     <div class="card-body">
         <h5 class="card-title">Where will you leave your donation for us to pickup?</h5>
         <select class="custom-select class col-2" id="zipcode-select">
-            <option selected>Front Porch</option>
+            <option selected>Ring Bell</option>
+            <option>Front Porch</option>
             <option>Side of House</option>
             <option>Driveway</option>
             <option>Garage</option>

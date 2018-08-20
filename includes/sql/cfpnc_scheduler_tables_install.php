@@ -31,6 +31,24 @@ function cfpnc_scheduler_tables_install() {
 			  PRIMARY KEY  (id)    
 		   ) $charset_collate;";
 		}	
+
+		//1. Create the donations table
+		$donations_table = $wpdb->prefix . "cfpnc_scheduler_donations";
+	 
+		if($wpdb->get_var("SHOW TABLES LIKE '" . $zipcodes_table . "'") !== $zipcodes_table) {
+		   $sql[] = "CREATE TABLE $zipcodes_table (
+			  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+			  user_id BIGINT(20) NOT NULL,
+			  contact VARCHAR(30) NOT NULL,
+			  phone_number VARCHAR(10) NOT NULL,
+			  email VARCHAR(30) NOT NULL,
+			  address VARCHAR(100) NOT NULL,
+			  
+			  created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
+			  UNIQUE (id),
+			  PRIMARY KEY  (id)    
+		   ) $charset_collate;";
+		}	
 				
 		if(!empty($sql)){
 		   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
