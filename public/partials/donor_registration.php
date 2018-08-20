@@ -13,6 +13,7 @@
  */
 ?>
 
+<div id="new-donation">
 <div class="card">
     <div class="card-body">
     <h5 class="card-title">Select The Pickup Zipcode</h5>
@@ -233,4 +234,12 @@
         <button type="button" class="btn btn-primary" id="submit-donor-button">Submit</button>
     </div>
 </div><!--End of submit card-->
+
+</div><!--End of new donation div-->
+
+<div class="card" id="donation-success">
+    <div class="card-body">
+        <h5 class="card-title">Thank you for your donation!</h5>
+    </div>
+</div><!--End of success card-->
 

@@ -26,6 +26,7 @@ jQuery(window).load(function () {
     jQuery("#items-card").hide();
 
     jQuery('#furniture-comments').hide();
+    jQuery("#donation-success").hide();      
 
 
     jQuery('#pickup-datepicker').datepicker(
@@ -76,7 +77,8 @@ jQuery(window).load(function () {
           }
           var contact = jQuery('#contact-name').val();
           var phoneNumber = jQuery('#phone-number').val();
-          var email = jQuery('#email').val();
+          var email = jQuery('#email').val();          
+          var address = jQuery('#pickup-address').val();
           var stairs= parseInt(jQuery('input[type=radio][name=stairs-radio]:checked').val());
           var movingOut = parseInt(jQuery('input[type=radio][name=move-radio]:checked').val());
           var yardSale = parseInt(jQuery('input[type=radio][name=yard-radio]:checked').val());
@@ -98,8 +100,9 @@ jQuery(window).load(function () {
                 new_donation: newDonation
             },
             success: function (response) {
-                console.log(response);
-              },
+                jQuery("#new-donation").hide();  
+                jQuery("#donation-success").show('slow');      
+            },
             error: function(error){
             }
           });        
@@ -121,13 +124,18 @@ function renderZipcodeOption(zipcode) {
     return "<option value=" + zipcode.zipcode + "> " + zipcode.zipcode + "</option>";
 }
 
-function createDonation(name,phoneNumber,email){
+function createDonation(name,phoneNumber,email,address,stairs,movingOut,yardSale,estateAuction){
     var donor = {
       name: name,
       phoneNumber: phoneNumber,
-      email: email
+      email: email,
+      address: address,
+      stairs: stairs,
+      movingOut: movingOut,
+      yardSale: yardSale,
+      estateAuction: estateAuction,
     };
-    return donor;
+    return donation;
 }
 
 /**
