@@ -24,7 +24,9 @@ jQuery(window).load(function () {
     jQuery("#location-details-card").hide();
     jQuery("#pickup-address-card").hide();
     jQuery("#items-card").hide();
-
+    jQuery('#contact-card').hide();
+    jQuery('#pickup-spot').hide();
+    jQuery('#submit-donor-card').hide();
     jQuery('#furniture-comments').hide();
     jQuery("#donation-success").hide();      
 
@@ -57,6 +59,9 @@ jQuery(window).load(function () {
         jQuery('#location-details-card').show('slow');
         jQuery('#pickup-address-card').show('slow');
         jQuery("#items-card").show('slow');
+        jQuery('#contact-card').show('slow');
+        jQuery('#pickup-spot').show('slow');
+        jQuery('#submit-donor-card').show('slow');
     });
 
     jQuery("input[type='checkbox']").click(function (e) {
